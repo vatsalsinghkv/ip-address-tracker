@@ -15,7 +15,7 @@ class App {
 
 	constructor() {
 		this._getIPData();
-		// EVENTS
+
 		$btn.click(() => {
 			this._getIPData($searchBar[0].value);
 			$searchBar[0].value = '';
