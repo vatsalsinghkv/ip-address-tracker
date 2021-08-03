@@ -51,9 +51,16 @@ class App {
 			.then(data => {
 				if (data.error) throw new Error(`Error: ${data.reason}.`);
 				this._setIPData(data);
-				console.log(data);
 			})
-			.catch(e => alert(`${e.message} Try again!`));
+			.catch(e =>
+				alert(
+					`${
+						e.message === 'Failed to fetch'
+							? 'Disable AdBlocker and'
+							: e.message
+					} Try again!`
+				)
+			);
 	}
 
 	_setIPData({
