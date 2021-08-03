@@ -66,13 +66,16 @@
 	</head>
 
 	<body>
-		<header id="header-section" class="h-lg-50">
+		<header id="header-section" class="h-lg-50" role="main-header">
 			<div class="container">
-				<h3 class="text-center header-heading pt-4 pb-3 text-light">
+				<h3 class="text-center header-heading pt-4 pb-3 text-light fw-bold">
 					IP Address Tracker
 				</h3>
 
-				<div class="row justify-content-center px-4 px-sm-0">
+				<main
+					class="row justify-content-center px-4 px-sm-0"
+					role="main-section"
+				>
 					<div class="col-lg-5 p-0">
 						<form autocomplete="off">
 							<div class="input-group" id="search-bar">
@@ -100,6 +103,7 @@
 							loader-parent
 						"
 						id="result-bar"
+						role="output-bar"
 					>
 						<div class="d-lg-flex justify-content-between p-2">
 							<div
@@ -129,41 +133,17 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</main>
 			</div>
 		</header>
 
-		<!-- 
-			<div class="row row-cols-lg-4 p-2">
-							<div class="result-box px-2 mb-4 mb-lg-0 result-br">
-								<h5 class="result-heading mb-1 mb-lg-2">IP Address</h5>
-								<h5 class="result-text" id="ip-address"></h5>
-							</div>
+		<div id="map" role="map"></div>
 
-							<div class="result-box px-2 mb-4 mb-lg-0 result-br">
-								<h5 class="result-heading mb-1 mb-lg-2">Location</h5>
-								<h5 class="result-text" id="location"></h5>
-							</div>
-
-							<div class="result-box px-2 mb-4 mb-lg-0 result-br">
-								<h5 class="result-heading mb-1 mb-lg-2">Timezone</h5>
-								<h5 class="result-text" id="timezone"></h5>
-							</div>
-
-							<div class="result-box px-2">
-								<h5 class="result-heading mb-1 mb-lg-2">ISP</h5>
-								<h5 class="result-text" id="isp"></h5>
-							</div>
-						</div>
-		 -->
-
-		<div id="map"></div>
-
-		<div class="attribution">
+		<footer class="attribution" role="attribution">
 			Challenge by
 			<a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
 				>Frontend Mentor</a
 			>. Coded by <a href="https://github.com/vatsalsinghkv">Vatsal Singh</a>.
-		</div>
+		</footer>
 	</body>
 </html>
