@@ -23,7 +23,7 @@
 		<!-- Leaflet CSS -->
 		<link
 			rel="stylesheet"
-			href="node_modules/leaflet/dist/leaflet.css"
+			href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
 			integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
 			crossorigin=""
 		/>
@@ -42,7 +42,7 @@
 		<!-- Leaflet Script -->
 		<script
 			defer
-			src="node_modules/leaflet/dist/leaflet.js"
+			src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
 			integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
 			crossorigin=""
 		></script>
@@ -68,18 +68,19 @@
 
 				<div class="row justify-content-center px-4 px-sm-0">
 					<div class="col-lg-5 p-0">
-						<div class="input-group" id="search-bar">
-							<input
-								class="form-control"
-								id="search-bar-main"
-								type="text"
-								required
-								placeholder="Search for any IP address or domain"
-							/>
-							<span class="input-group-text" id="btn-arrow">
-								<img src="images/icon-arrow.svg" alt="Enter" />
-							</span>
-						</div>
+						<form>
+							<div class="input-group" id="search-bar">
+								<input
+									class="form-control"
+									id="search-bar-main"
+									type="text"
+									placeholder="Search for any IP address or domain"
+								/>
+								<button type="submit" class="input-group-text" id="btn-arrow">
+									<img src="images/icon-arrow.svg" alt="Enter" />
+								</button>
+							</div>
+						</form>
 					</div>
 
 					<!-- Result Bar -->
@@ -90,11 +91,15 @@
 							bg-white
 							shadow-lg
 							p-3
+							loader-parent
 						"
 						id="result-bar"
 					>
 						<div class="d-lg-flex justify-content-between p-2">
-							<div class="result-box px-2 mb-4 mb-lg-0 result-br">
+							<div
+								class="result-box px-2 mb-4 mb-lg-0 result-br"
+								id="ip-container"
+							>
 								<h5 class="result-heading mb-1 mb-lg-2">IP Address</h5>
 								<h5 class="result-text" id="ip-address"></h5>
 							</div>
@@ -118,6 +123,30 @@
 				</div>
 			</div>
 		</header>
+
+		<!-- 
+			<div class="row row-cols-lg-4 p-2">
+							<div class="result-box px-2 mb-4 mb-lg-0 result-br">
+								<h5 class="result-heading mb-1 mb-lg-2">IP Address</h5>
+								<h5 class="result-text" id="ip-address"></h5>
+							</div>
+
+							<div class="result-box px-2 mb-4 mb-lg-0 result-br">
+								<h5 class="result-heading mb-1 mb-lg-2">Location</h5>
+								<h5 class="result-text" id="location"></h5>
+							</div>
+
+							<div class="result-box px-2 mb-4 mb-lg-0 result-br">
+								<h5 class="result-heading mb-1 mb-lg-2">Timezone</h5>
+								<h5 class="result-text" id="timezone"></h5>
+							</div>
+
+							<div class="result-box px-2">
+								<h5 class="result-heading mb-1 mb-lg-2">ISP</h5>
+								<h5 class="result-text" id="isp"></h5>
+							</div>
+						</div>
+		 -->
 
 		<div id="map"></div>
 
