@@ -11,6 +11,7 @@ class App {
 	#map;
 	#mapZoom = 15;
 	#coords;
+	#marker;
 
 	constructor() {
 		this._getIPData();
@@ -50,6 +51,7 @@ class App {
 			.then(data => {
 				if (data.error) throw new Error(`Error: ${data.reason}.`);
 				this._setIPData(data);
+				console.log(data);
 			})
 			.catch(e => alert(`${e.message} Try again!`));
 	}
@@ -94,7 +96,9 @@ class App {
 	}
 
 	#_setMarker() {
-		L.marker(this.#coords, {
+		if (this.#marker) this.#map.removeLayer(this.#marker);
+
+		this.#marker = L.marker(this.#coords, {
 			icon: L.icon({
 				iconUrl: 'images/icon-location.svg',
 				iconAnchor: [24, 56],

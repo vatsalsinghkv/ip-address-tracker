@@ -76,11 +76,6 @@ body {
 	background: var(--dark-grey-light);
 }
 
-/* LOADER */
-.loader-parent {
-	position: relative;
-}
-
 /* RESULT BAR */
 
 #result-bar {
@@ -118,6 +113,7 @@ body {
 	}
 }
 
+/* Result Box */
 .result-box {
 	position: relative;
 	word-wrap: break-word;
@@ -149,12 +145,33 @@ body {
 	}
 }
 
+/* Data Container */
 #ip-container {
 	max-width: 25%;
 }
 
 @media screen and (max-width: 991px) {
 	#ip-container {
+		max-width: 100%;
+	}
+}
+
+#location-container {
+	max-width: 27%;
+}
+
+@media screen and (max-width: 991px) {
+	#location-container {
+		max-width: 100%;
+	}
+}
+
+#isp-container {
+	max-width: 25%;
+}
+
+@media screen and (max-width: 991px) {
+	#isp-container {
 		max-width: 100%;
 	}
 }
