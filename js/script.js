@@ -7,33 +7,51 @@ const $locationEl = $('#location');
 const $timezoneEl = $('#timezone');
 const $ispEl = $('#isp');
 
-// https://ipapi.co/42.105.17.12/json/
-
 class App {
 	#map;
 	#mapZoom = 15;
+	#coords;
 
 	constructor() {
 		this._getIPData();
 
-		$btn.click(() => {
-			this._getIPData($searchBar[0].value);
-			$searchBar[0].value = '';
-		});
-
-		$(document).keydown(e => {
-			if (key.enter === 'Enter') this._getIPData($searchBar[0].value);
-		});
+		// Events
+		$btn.click(this.#_search.bind(this));
+		$resultBar.click(this.#_moveTo.bind(this));
 	}
 
+	// Event Callbacks
+	#_search(e) {
+		e.preventDefault();
+		if ($searchBar[0].value) {
+			this._getIPData($searchBar[0].value);
+			$searchBar[0].value = '';
+		} else {
+			alert(`Field can't be empty!`);
+		}
+	}
+
+	#_moveTo() {
+		if (!this.#map) return;
+		this.#map.setView(this.#coords, this.#mapZoom);
+	}
+
+	// Main Functionality
 	_getIPData(ip = '') {
+		// Fetch promise only rejects if there's no internet. It'll send data even if it can't find the IP
 		fetch(`https://ipapi.co/${ip}/json`)
-			.then(res => res.json())
+			.then(res => {
+				if (!res.ok)
+					throw new Error(
+						`Error ${res.status}: Something went wrong. Failed to load.\n`
+					);
+				return res.json();
+			})
 			.then(data => {
-				if (data.error) throw new Error();
+				if (data.error) throw new Error(`Error: ${data.reason}.`);
 				this._setIPData(data);
 			})
-			.catch(() => alert(`Error: Invalid IP Address`));
+			.catch(e => alert(`${e.message} Try again!`));
 	}
 
 	_setIPData({
@@ -52,16 +70,19 @@ class App {
 		$timezoneEl.text(`UTC${utc_offset}`);
 		$ispEl.text(org);
 
+		this.#coords = [latitude, longitude];
+
 		if (this.#map) {
-			this.#map.setView([latitude, longitude], this.#mapZoom);
+			this.#map.setView(this.#coords, this.#mapZoom);
+			this.#_setMarker();
 		} else {
-			this._loadMap([latitude, longitude]);
+			this._loadMap();
 		}
 	}
 
-	_loadMap(coords) {
+	_loadMap() {
 		// LeafLets: Library
-		this.#map = L.map('map').setView(coords, this.#mapZoom);
+		this.#map = L.map('map').setView(this.#coords, this.#mapZoom);
 
 		// Google Map
 		L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
@@ -69,9 +90,13 @@ class App {
 			subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
 		}).addTo(this.#map);
 
-		L.marker(coords, {
+		this.#_setMarker();
+	}
+
+	#_setMarker() {
+		L.marker(this.#coords, {
 			icon: L.icon({
-				iconUrl: '/images/icon-location.svg',
+				iconUrl: 'images/icon-location.svg',
 				iconAnchor: [24, 56],
 			}),
 		})

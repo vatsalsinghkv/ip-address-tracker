@@ -50,7 +50,7 @@ body {
 #header-section {
 	position: relative;
 	z-index: 1;
-	background: url('/images/pattern-bg.png') 65% bottom;
+	background: url('../images/pattern-bg.png') 65% bottom;
 }
 
 #search-bar-main {
@@ -74,6 +74,11 @@ body {
 
 #btn-arrow:hover {
 	background: var(--dark-grey-light);
+}
+
+/* LOADER */
+.loader-parent {
+	position: relative;
 }
 
 /* RESULT BAR */
@@ -141,6 +146,16 @@ body {
 		top: 0;
 		left: 0;
 		z-index: 0;
+	}
+}
+
+#ip-container {
+	max-width: 25%;
+}
+
+@media screen and (max-width: 991px) {
+	#ip-container {
+		max-width: 100%;
 	}
 }
 
