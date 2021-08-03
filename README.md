@@ -52,7 +52,7 @@ Users should be able to:
 
 I've learned lot of stuff in this challenge:
 
-- Object Orienter Programming.
+- Object Orienter Programming
 
 ```js
 class App {
@@ -86,7 +86,7 @@ class App {
 const app = new App();
 ```
 
-- How to get fetch from APIs.
+- How to get fetch from APIs
 
 ```js
 fetch(`https://ipapi.co/json`)
@@ -101,7 +101,7 @@ fetch(`https://ipapi.co/json`)
 }
 ```
 
-- Grid System of Bootstrap-5.
+- Grid System of Bootstrap-5
 
 ```html
 <main class="row">
@@ -118,7 +118,7 @@ fetch(`https://ipapi.co/json`)
 </main>
 ```
 
-- How to use LealletsJs.
+- How to use LealletsJs
 
 ```js
 const map = L.map('mapID').setView([lat, lon], 15);
