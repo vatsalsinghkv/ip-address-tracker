@@ -66,7 +66,7 @@ class App {
 		longitude,
 	}) {
 		$ipAddrEl.text(ip);
-		$locationEl.html(`${city}, ${region}<br>${country_name} - ${postal}`);
+		$locationEl.html(`${city}, ${region},<br>${country_name} - ${postal}`);
 		$timezoneEl.text(`UTC${utc_offset}`);
 		$ispEl.text(org);
 
