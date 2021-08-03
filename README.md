@@ -90,14 +90,14 @@ const app = new App();
 
 ```js
 fetch(`https://ipapi.co/json`)
-			.then(res =>  res.json())
-			.then(data => {
-				if (data.error) throw new Error(`Error: ${data.reason}.`);
-				this._setIPData(data);
-			})
-			.catch(e =>
-				alert(`${	e.message} Try again!`)
-			);
+  .then(res =>  res.json())
+  .then(data => {
+    if (data.error) throw new Error(`Error: ${data.reason}.`);
+    this._setIPData(data);
+  })
+  .catch(e =>
+    alert(`${	e.message} Try again!`)
+  );
 }
 ```
 
