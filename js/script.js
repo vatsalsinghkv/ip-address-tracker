@@ -56,7 +56,7 @@ class App {
 				alert(
 					`${
 						e.message === 'Failed to fetch'
-							? 'Disable AdBlocker and'
+							? 'Disable AdBlocker \nor Check Your Internet Connection.'
 							: e.message
 					} Try again!`
 				)
