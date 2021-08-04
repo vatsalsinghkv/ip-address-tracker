@@ -9,7 +9,7 @@ const $ispEl = $('#isp');
 
 class App {
 	#map;
-	#mapZoom = 15;
+	#mapZoom = 13;
 	#coords;
 	#marker;
 
