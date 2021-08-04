@@ -61,6 +61,13 @@ body {
 	height: 50px;
 }
 
+/* < Small */
+@media screen and (max-width: 576px) {
+	#search-bar-main {
+		font-size: 1.25rem;
+	}
+}
+
 #btn-arrow {
 	background: var(--dark-grey);
 	border: none;
