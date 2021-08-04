@@ -217,6 +217,14 @@ body {
 	font-weight: bold;
 	text-align: center;
 }
+
 .attribution a {
 	color: hsl(228, 45%, 44%);
+}
+
+/* < Small */
+@media screen and (max-width: 576px) {
+	.attribution {
+		font-size: .75rem;
+	}	
 }
