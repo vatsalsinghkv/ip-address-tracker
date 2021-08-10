@@ -13,6 +13,8 @@ class App {
 	#coords;
 	#marker;
 
+	timeoutErrMsg = 'Request took too long!';
+
 	constructor() {
 		this._getIPData();
 
@@ -37,30 +39,43 @@ class App {
 		this.#map.setView(this.#coords, this.#mapZoom);
 	}
 
+	async #_timeout(sec) {
+		let errMsg = this.timeoutErrMsg;
+		return new Promise(function (_, reject) {
+			setTimeout(function () {
+				reject(new Error(errMsg));
+			}, sec * 1000);
+		});
+	}
+
 	// Main Functionality
-	_getIPData(ip = '') {
-		// Fetch promise only rejects if there's no internet. It'll send data even if it can't find the IP
-		fetch(`https://ipapi.co/${ip}/json`)
-			.then(res => {
-				if (!res.ok)
-					throw new Error(
-						`Error ${res.status}: Something went wrong. Failed to load.\n`
-					);
-				return res.json();
-			})
-			.then(data => {
-				if (data.error) throw new Error(`Error: ${data.reason}.`);
-				this._setIPData(data);
-			})
-			.catch(e =>
-				alert(
-					`${
-						e.message === 'Failed to fetch'
-							? 'Disable AdBlocker \nor Check Your Internet Connection.'
-							: e.message
-					} Try again!`
-				)
-			);
+
+	_reset() {
+		$ipAddrEl.text('Failed!');
+		$locationEl.text('Failed!');
+		$timezoneEl.text('Failed!');
+		$ispEl.text('Failed!');
+	}
+
+	async _getIPData(ip = '') {
+		try {
+			// Fetch promise only rejects if there's no internet. It'll send data even if it can't find the IP
+			const res = await Promise.race([
+				fetch(`https://ipapi.co/${ip}/json`),
+				this.#_timeout(30),
+			]);
+			// prettier-ignore
+			if (!res.ok) throw new Error(`Error ${res.status}: Something went wrong. Failed to load.\n`);
+
+			const data = await res.json();
+			if (data.error) throw new Error(`Error: ${data.reason}.`);
+
+			this._setIPData(data);
+		} catch (e) {
+			// prettier-ignore
+			alert(`${e.message === 'Failed to fetch' ? 'Disable AdBlocker\nor Check Your Internet Connection.' : e.message} Try again!`);
+			if (e.message === this.timeoutErrMsg) this._reset();
+		}
 	}
 
 	_setIPData({

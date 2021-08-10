@@ -50,7 +50,14 @@ body {
 #header-section {
 	position: relative;
 	z-index: 1;
-	background: url('../images/pattern-bg.png') 65% bottom;
+	background: url('../images/pattern-bg.png');
+}
+
+/* < Small */
+@media screen and (max-width: 576px) {
+	#header-section {
+		background-position: 60% top;
+	}
 }
 
 #search-bar-main {
@@ -225,6 +232,6 @@ body {
 /* < Small */
 @media screen and (max-width: 576px) {
 	.attribution {
-		font-size: .75rem;
-	}	
+		font-size: 0.75rem;
+	}
 }
