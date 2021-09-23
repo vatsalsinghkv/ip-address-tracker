@@ -74,7 +74,7 @@ class App {
 		} catch (e) {
 			// prettier-ignore
 			alert(`${e.message === 'Failed to fetch' ? 'Disable AdBlocker\nor Check Your Internet Connection.' : e.message} Try again!`);
-			if (e.message === this.timeoutErrMsg) this._reset();
+			this._reset();
 		}
 	}
 
